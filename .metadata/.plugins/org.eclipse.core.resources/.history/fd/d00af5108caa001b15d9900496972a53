@@ -1,0 +1,28 @@
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Scanner;
+
+
+public class RequestClient {
+	public static void main (String[] args) {
+		String link = "";
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter your query: ");
+
+		String query = sc.nextLine();
+		
+		System.out.println("Enter your Senetor: ");
+
+		String sen = sc.nextLine();
+
+
+		try {
+			HttpURLConnection con = (HttpURLConnection) new URL(link).openConnection();
+			con.setRequestMethod("GET");
+			con.
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

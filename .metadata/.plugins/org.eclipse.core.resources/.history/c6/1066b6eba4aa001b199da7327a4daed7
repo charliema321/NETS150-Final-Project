@@ -1,0 +1,18 @@
+import java.util.Scanner;
+public class RecM {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("What is your query? : ");
+		
+		String query = sc.nextLine();
+		
+		System.out.println("Who is your senator? : ");
+		
+		String sen = sc.nextLine();
+
+	}
+
+}

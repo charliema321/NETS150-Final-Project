@@ -1,0 +1,84 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Scanner;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+public class RequestClient {
+	String link;
+	String key;
+	String request;
+	HttpURLConnection con;
+
+
+	public RequestClient(String link, String key, String request) {
+		this.link = link;
+		this.key = key;
+		this.request = request;
+
+		try {
+			con = (HttpURLConnection) new URL(link).openConnection();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+
+	public static void main (String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter your query: ");
+		String key = "oy8bhWLG92Y9880Vxs2wK5nBjAkgDyWbbDhgl5wX";
+
+		String query = sc.nextLine();
+		//		
+		//		System.out.println("Enter your Senetor: ");
+		//
+		//		String sen = sc.nextLine();
+
+		sc.close();
+
+		String link  = "https://api.propublica.org/congress/v1/bills/search.json?query=" + query;
+
+
+
+		try {
+			HttpURLConnection con = (HttpURLConnection) new URL(link).openConnection();
+			con.setRequestProperty("X-API-Key", key);
+			con.setRequestMethod("GET");
+			con.setDoOutput(true);
+			con.setDoInput(true);
+
+			//			InputStreamReader is = new InputStreamReader (con.getInputStream(), "UTF-8");
+			//            BufferedReader in = new BufferedReader (is);
+
+
+			System.out.println("Response Code " + con.getResponseCode());
+			//
+			BufferedReader in = new BufferedReader(
+					new InputStreamReader(con.getInputStream()));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
+			}
+			in.close();
+			//Read JSON response and print
+
+			JSONObject myResponse = new JSONObject(response.toString());
+
+			System.out.println(myResponse.toString(2));
+
+
+		} catch (IOException | JSONException e) {
+			e.printStackTrace();
+
+		}
+	}
+
+
+}
