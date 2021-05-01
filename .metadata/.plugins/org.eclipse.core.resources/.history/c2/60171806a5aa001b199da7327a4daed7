@@ -1,0 +1,24 @@
+import java.util.Scanner;
+public class RecM {
+
+	public static void main(String[] args) {
+		
+		String link = "https://api.propublica.org/congress/v1/bills/search.json?query=";
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("What is your query? : ");
+		
+		String query = sc.nextLine();
+		
+		System.out.println("Who is your senator? : ");
+		
+		String sen = sc.nextLine();
+		
+		sc.close();
+		
+		RequestClient r = new RequestClient()
+
+	}
+
+}

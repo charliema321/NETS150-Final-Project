@@ -1,0 +1,8 @@
+import java.net.HttpURLConnection;
+
+public class RequestClient {
+	public static void main (String[] args) {
+		String link = "";
+		HttpURLConnection con = new URL(link).openConnection();
+	}
+}

@@ -1,0 +1,32 @@
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Scanner;
+
+
+public class RequestClient {
+	public static void main (String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter your query: ");
+
+		String query = sc.nextLine();
+		//		
+		//		System.out.println("Enter your Senetor: ");
+		//
+		//		String sen = sc.nextLine();
+		
+		sc.close();
+
+		String link  = "https://api.propublica.org/congress/v1/bills/search.json?query=" + query;
+
+		
+
+		try {
+			HttpURLConnection con = (HttpURLConnection) new URL(link).openConnection();
+			con.setRequestMethod("GET");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
