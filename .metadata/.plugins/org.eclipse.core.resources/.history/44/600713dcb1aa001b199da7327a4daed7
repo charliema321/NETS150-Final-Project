@@ -1,11 +1,10 @@
 import java.util.Scanner;
-import java.util.Set;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 public class RecM {
 
@@ -34,22 +33,15 @@ public class RecM {
 		RequestClient r = new RequestClient(link, key, "GET");
 		JSONObject obj  = r.getObject(query);
 		
-//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 		
 
 		try {
-//	        String s = obj.get("results").toString();
-//	        String gs = gson.toJson(s);
-//
-//	        
-//	        JsonObject jsonObject = JsonParser.parseString(gs).getAsJsonObject();
-
-//	        Set<String> keys = jsonObject.keySet();
-
+	        String s = obj.get("results").toString();
+	        String gs = gson.toJson(s);
 	        
-	        
-			System.out.println("Indented Output : " + obj.toString(2));
+			System.out.println("Indented Output : " + );
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
