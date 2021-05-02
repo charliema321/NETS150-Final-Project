@@ -1,11 +1,7 @@
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
-import org.json.JSONException;
 import org.json.JSONObject;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 public class RecM {
 
@@ -31,28 +27,14 @@ public class RecM {
 		
 		//client to get data
 		
-		RequestClient r = new RequestClient(link, key, "GET");
-		JSONObject obj  = r.getObject(query);
+		RequestClient r = new RequestClient(key, "GET");
+		JSONObject obj  = r.getObject(link + query);
 		
-//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
+		Map<String, Set<String>> resultMap = r.createMap(obj);
 		
-
-		try {
-//	        String s = obj.get("results").toString();
-//	        String gs = gson.toJson(s);
-//
-//	        
-//	        JsonObject jsonObject = JsonParser.parseString(gs).getAsJsonObject();
-
-//	        Set<String> keys = jsonObject.keySet();
-
-	        
-	        
-			System.out.println("Indented Output : " + obj.toString(2));
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+		System.out.println(resultMap.toString());
+		System.out.println(resultMap.size());
+		
 	}
 
 }
