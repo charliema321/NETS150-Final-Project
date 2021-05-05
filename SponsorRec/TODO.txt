@@ -1,3 +1,0 @@
-Create a result map for the query
-Generate similar bills to get more than 20 results
-Implement recommendation system
