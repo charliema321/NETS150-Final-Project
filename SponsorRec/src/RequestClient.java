@@ -15,13 +15,14 @@ public class RequestClient {
 	Map<String, Set<String>> resultMap;
 	String key;
 	String type;
-
+	
 	public RequestClient(String key, String type) {
 		this.key = key;
 		this.type = type;
 
 	}
 
+	//Obtain the JSONObject for the call to the API
 	public JSONObject getObject(String link) {
 
 		try {
@@ -45,6 +46,7 @@ public class RequestClient {
 		return null;
 	}
 
+	//Creates a map of bills and their sponsors/cosponsors for a given query
 	public Map<String, Set<String>> createMap(JSONObject r) {
 		resultMap = new TreeMap<String, Set<String>>();
 
@@ -52,7 +54,8 @@ public class RequestClient {
 		try {
 			resul = new JSONArray(r.get("results").toString());
 			JSONArray bills = new JSONArray(resul.getJSONObject(0).get("bills").toString());
-
+			
+			//obtain each individual bill
 			for (int i = 0; i < bills.length(); i++) {
 				JSONObject bill = bills.getJSONObject(i);
 				String[] billID = bill.get("bill_id").toString().split("-");
@@ -61,6 +64,8 @@ public class RequestClient {
 				JSONObject output = getRelated(billID);
 				JSONArray resul2 = new JSONArray(output.get("results").toString());
 				JSONObject result = new JSONObject(resul2.get(0).toString());
+				
+				//obtain each relatedBills for the individual bills
 				JSONArray relatedBills = new JSONArray(result.get("related_bills").toString());
 				for (int j = 0; j < relatedBills.length(); j++) {
 					JSONObject relatedBill = relatedBills.getJSONObject(j);
@@ -75,6 +80,7 @@ public class RequestClient {
 		return resultMap;
 	}
 
+	//Function to get the sponsors for a given bill
 	private Set<String> getSponsors(String[] billID) {
 		Set<String> listSpons = new HashSet<String>();
 		String newLink = "https://api.propublica.org/congress/v1/" + billID[1] + "/bills/" + billID[0]
@@ -105,6 +111,7 @@ public class RequestClient {
 		return null;
 	}
 
+	//function to get the JSONObject for a related bill
 	private JSONObject getRelated(String[] billID) {
 		String newLink = "https://api.propublica.org/congress/v1/" + billID[1] + "/bills/" + billID[0]
 				+ "/related.json";
