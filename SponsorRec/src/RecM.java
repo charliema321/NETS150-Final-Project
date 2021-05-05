@@ -23,6 +23,10 @@ public class RecM {
 		
 		String sen = sc.nextLine();
 		
+		System.out.println("What is the Minimum Number of Bills That This Senator Must Sponser? : ");
+		
+		int num = sc.nextInt();
+		
 		sc.close();
 		
 		//client to get data
@@ -32,9 +36,18 @@ public class RecM {
 		
 		Map<String, Set<String>> resultMap = r.createMap(obj);
 		
-		System.out.println(resultMap.toString());
-		System.out.println(resultMap.size());
+		Recommendation rec = new Recommendation(resultMap);
 		
+		if(rec.enoughSupport(num, sen)) {
+			Set<String> output = rec.mostCommonSenator();
+			output.remove(sen);
+			System.out.println("Senator Recomendations:");
+			System.out.println(rec.tooMuchInCommon(sen, output));
+		} else {
+			System.out.println(sen + " does not sponser enough bills in this query. "
+					+ "Either choose a new senator or lower the minimum number of bills needed"
+					+ " to be sponsered");
+		}
 	}
 
 }
