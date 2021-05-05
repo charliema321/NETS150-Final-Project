@@ -70,7 +70,7 @@ public class Recommendation {
 					count++;
 				}
 			}
-			if(count / resultMap.size() > 0.05) {
+			if(count / resultMap.size() >= 0.05) {
 				senatorsToRemove.add(str);
 			}
 		}
