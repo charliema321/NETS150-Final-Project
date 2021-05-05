@@ -4,16 +4,4 @@ Given a senator and a query, if there is enough information, we find a senator w
 
 ## Installation
 
-Ensure that the *.jar are added to the classpath.
-
-```bash
-
-```
-
-## Examples
-
-```java
-//TODO
-```
-
-Akshat Shah and Charlie Ma
+Ensure that the *.jar are added to your classpath.
